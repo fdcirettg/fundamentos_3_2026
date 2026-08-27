@@ -46,6 +46,29 @@ class LnkdLst {
             current = current.next;
         }
     }
+        public Student retrieve(String searchedName) {
+        Student current = this.head;
+        while (current != null) {
+            if (current.name.equals(searchedName))
+            { return current; }
+            current = current.next; //traverse the list
+        }
+        return null; // not found
+    }
+    public void remove(int n){
+        if (head == null) { return; } // Empty list
+        if (n < 0) { return; } // negative index
+        int index = 0;
+        Student current = head; 
+        while ( current !=null && index < (n-1)) {
+            current = current.next;
+            index++;
+        }
+        if (current==null || current.next == null) {
+            return; // position out of range
+        }
+        current.next = current.next.next;
+    }
 }
 public class PruebaLinkedList {
     public static void main(String[] args) {
@@ -54,6 +77,16 @@ public class PruebaLinkedList {
         lista.add("Ada",95);
         lista.add("Paul",78);
         lista.print();
+        Student s = lista.retrieve("Ada");
+        if (s != null) {
+            System.out.println("Found: " + s.name + " - " + s.score);
+        } else {
+            System.out.println("Student not found");
+        }
+        lista.remove(1);
+        System.out.println("After removing the second student:");
+        lista.print();
     }
     
 }
+
