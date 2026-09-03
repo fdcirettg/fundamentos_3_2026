@@ -24,9 +24,15 @@ public class NombresArrayList {
     public static void main(String[] args) {
         Path filePath = Paths.get("/Users/federicocirettgalan/Documents/proyectos_vscode/fundamentos_computacion3/fd_3/fundamentos_3_2026/NombresArrayList/listado.txt");
         ArrayList<String> namesList = readNamesFromFile(filePath.toString());
+        int FIRSTNAME = 0,FIRST_LASTNAME = 1, LAST_LASTNAME=2; 
         printNames(namesList);
-        ArrayList<String> countedNames = countNames(namesList);
+        ArrayList<String> countedNames = countNames(namesList, FIRSTNAME);
         printNames(countedNames);
+        ArrayList<String> countedFirstLastNames = countNames(namesList, FIRST_LASTNAME);
+        printNames(countedFirstLastNames);
+        System.out.println("Last Last Names count:");
+        ArrayList<String> countedLastLastNames = countNames(namesList, LAST_LASTNAME);
+        printNames(countedLastLastNames);
     }
     public static ArrayList<String>readNamesFromFile(String filePath) {
         ArrayList<String> names = new ArrayList<>();
@@ -46,9 +52,9 @@ public class NombresArrayList {
             System.out.println(name);
         }
     }
-    public static ArrayList<String> countNames(ArrayList<String> names) {
+    public static ArrayList<String> countNames(ArrayList<String> names, int pos) {
         ArrayList<nameCount> countedNames = new ArrayList<>();
-        int pos = 0; // track the position of the name 
+        //int pos = 0; // track the position of the name 
         for (String name : names) {
             String[] splitName = name.split(" ");
             boolean found = false;
