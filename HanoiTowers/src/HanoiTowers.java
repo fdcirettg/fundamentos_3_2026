@@ -83,12 +83,38 @@ public class HanoiTowers {
     }
     public static void jugarManual() {
         inicializaTorres();
-        
-        while(true) {
+        while(numDiscos>torres[2].size()) {
             // Lógica para jugar manualmente
             despliegaTorres();
-            
+            String origen = eligeTorre("Elige la torre de origen (A, B, C): ");
+            String destino = eligeTorre("Elige la torre de destino (A, B, C): ");
+            int torreOrigen = origen.charAt(0) - 'A';
+            int torreDestino = destino.charAt(0) - 'A';
+            if (torres[torreOrigen].isEmpty()) {
+                System.out.println("La torre de origen está vacía. Intenta de nuevo.");
+                continue;
+            }
+            if  (torreOrigen == torreDestino) {
+                System.out.println("La torre de origen y destino son las mismas. Intenta de nuevo.");
+                continue;
+            }
+            moverDisco(torreOrigen, torreDestino);
         }
+        System.out.println("¡Felicidades! Has completado el juego.");
+    }
+    public static  boolean moverDisco(int origen, int destino) {
+        if (torres[origen].isEmpty()) {
+            System.out.println("No hay discos en la torre de origen.");
+            return false;
+        }
+        if (!torres[destino].isEmpty() && torres[destino].peek() < torres[origen].peek()) {
+            System.out.println("Movimiento invalido. No puedes colocar un disco más grande sobre uno más pequeño.");
+            return false;
+        }
+        int disco = torres[origen].pop();
+        torres[destino].push(disco);
+        System.out.println("Moviste el disco " + disco + " de la torre " +(char)('A' + origen) + " a la torre " + (char)('A' + destino) + ".");
+        return true;
     }
     public static String eligeTorre(String mensaje) {
         String torre;
