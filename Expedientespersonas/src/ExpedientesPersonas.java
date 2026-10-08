@@ -52,14 +52,26 @@ public class ExpedientesPersonas {
         for (Personas persona : personas) {
             mapaPersonas.put(persona.getNombre(), persona);
         }
+        Personas personaEncontradaEnHashMap = buscarPersonaenHashMap(mapaPersonas, "Luis Caro Durazo");
+        personaEncontradaEnHashMap.mostrarDatos();
         buscarVariasPersonasEnHashMap(mapaPersonas, nombresABuscar);
     }
     public static Personas buscarPersonaenHashMap(java.util.HashMap<String, Personas> mapaPersonas, String nombre) {
-        
+        return mapaPersonas.get(nombre);
     }
     public static void buscarVariasPersonasEnHashMap(java.util.HashMap<String, Personas> mapaPersonas, String[] nombres) {
         // Inicia un timer para medir el tiempo de búsqueda
-        
+        long startTime = System.nanoTime();
+        for (String nombre : nombres) {
+            Personas personaEncontrada = buscarPersonaenHashMap(mapaPersonas, nombre);
+            if (personaEncontrada != null) {
+                personaEncontrada.mostrarDatos();
+            } else {
+                System.out.println("No se encontró a la persona con nombre: " + nombre);
+            }
+        }        // Finaliza el timer y muestra el tiempo de búsqueda
+        long endTime = System.nanoTime();
+        System.out.println("Tiempo de búsqueda en HashMap: " + (endTime - startTime) / 1000000.0 + " ms");
     }
 
     public static Personas buscarPersonaEnLista(ArrayList<Personas> personas, String nombre) {
