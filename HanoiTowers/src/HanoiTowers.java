@@ -127,5 +127,23 @@ public class HanoiTowers {
         } while (!torre.equals("A") && !torre.equals("B") && !torre.equals("C"));
         return torre;
     }
-    public static void mostrarSolucion() {}
+    public static void mostrarSolucion() {
+        inicializaTorres();
+        System.out.println("\nEstado inicial:");
+        despliegaTorres();
+        resuelveHanoi(numDiscos, 0, 2, 1);
+        System.out.println("\nProblema resuelto.");
+    }
+
+    // Mueve n discos de origen a destino usando auxiliar, mostrando las torres tras cada movimiento
+    static void resuelveHanoi(int n, int origen, int destino, int auxiliar) {
+        if (n == 0) {
+            return;
+        }
+        resuelveHanoi(n - 1, origen, auxiliar, destino);
+        moverDisco(origen, destino);
+        despliegaTorres();
+        System.out.println();
+        resuelveHanoi(n - 1, auxiliar, destino, origen);
+    }
 }
