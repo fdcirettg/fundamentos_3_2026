@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Nodo {
+class Nodo {
     int valor;
     Nodo izquierda;
     Nodo derecha;
@@ -34,12 +34,22 @@ class ArbolBinario {
     public void preOrden() {
         preOrdenRecursivo(raiz);
     }
-    
+
     private void preOrdenRecursivo(Nodo nodo) {
         if (nodo != null) {
             System.out.print(nodo.valor + " ");
             preOrdenRecursivo(nodo.izquierda);
             preOrdenRecursivo(nodo.derecha);
+        }
+    }
+    public void inOrden() {
+        inOrdenRecursivo(raiz);
+    }
+    private void inOrdenRecursivo(Nodo nodo) {
+        if (nodo != null) {
+            inOrdenRecursivo(nodo.izquierda);
+            System.out.print(nodo.valor + " ");
+            inOrdenRecursivo(nodo.derecha);
         }
     }
 }
@@ -65,7 +75,7 @@ public class Recursividad {
         }*/
         //System.out.println("Factorial de 32: " + factorial(32));
         // Tiempo final
-        int[] array  = {20,21,22,23,24,25,26,27,28,29,30};
+        int[] array  = {20,21,22,23,24,25,26,27,28,29,30,102,55,21,7,225,633,4};
         int x = 30;
         int indice = buscar(array, x, 0, array.length - 1);
         if (indice != -1) {
@@ -73,6 +83,13 @@ public class Recursividad {
         } else {
             System.out.println("Elemento " + x + " no encontrado.");
         }
+        // Creación de Arbol Binario
+        ArbolBinario ArbolB = new ArbolBinario();
+        for(int a: array) {
+            ArbolB.insertar(a);
+        }
+        ArbolB.preOrden();
+
     }
     public static long fib(int n) {
         if (n <= 1) return n;
