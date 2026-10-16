@@ -89,6 +89,8 @@ public class Recursividad {
             ArbolB.insertar(a);
         }
         ArbolB.preOrden();
+        System.out.println();
+        ArbolB.inOrden();
 
     }
     public static long fib(int n) {
