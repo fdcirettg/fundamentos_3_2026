@@ -6,6 +6,7 @@ class GrafoArrays {
     public GrafoArrays(String origen) {
         creaTablaVertices(origen);
         matrizAdyacencia = new int[numVertices][numVertices];
+        populateMatrizAdyacencia(origen);
     }
 
     private void creaTablaVertices(String origen) {
@@ -32,7 +33,30 @@ class GrafoArrays {
              // Cada linea se separa en dos vértices y un peso, luego se llama al método agregarArista para agregarlas a la matriz de adyacencia
              // Crear un método para desplegar la Matriz de adyacencia
     }
-
+    private void populateMatrizAdyacencia(String origen) {
+        String[] lineas = origen.split("\\R");
+        for (String linea : lineas) {
+            String arista = linea.trim();
+            if (arista.startsWith("{")) {
+                arista = arista.substring(1).trim();
+            }
+            int etiqueta = arista.indexOf('[');
+            int peso = 1; // Peso por defecto
+            if (etiqueta >= 0) {
+                String pesoStr = arista.substring(etiqueta + 1, arista.indexOf(']', etiqueta));
+                try {
+                    peso = Integer.parseInt(pesoStr.trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("Peso inválido en la línea: " + linea);
+                }
+                arista = arista.substring(0, etiqueta);
+            }
+            String[] extremos = arista.split("--", 2);
+            if (extremos.length == 2) {
+                agregarArista(extremos[0].trim(), extremos[1].trim(), peso);
+            }
+        }
+    }
     private void agregarVertice(String vertice) {
         for (int i = 0; i < numVertices; i++) {
             if (vertices[i].equals(vertice)) {
@@ -46,11 +70,28 @@ class GrafoArrays {
     public void display() {
         System.out.println("Vértices del grafo:");
         displayVertices();
+        displayMatrizAdyacencia();
     }
 
     private void displayVertices() {
         for (int i = 0; i < numVertices; i++) {
             System.out.println(vertices[i]);
+        }
+    }
+    private void displayMatrizAdyacencia() {
+        System.out.println("Matriz de Adyacencia:");
+        // Imprimir encabezado de columnas
+        System.out.print("    ");
+        for (int i = 0; i < numVertices; i++) {
+            System.out.print("   " +vertices[i].substring(0,3) );
+        }
+        System.out.println();
+        for (int i = 0; i < numVertices; i++) {
+            System.out.print(vertices[i].substring(0, 4) + "    ");
+            for (int j = 0; j < numVertices; j++) {
+                System.out.print(matrizAdyacencia[i][j] + "     ");
+            }
+            System.out.println();
         }
     }
     private int obtenerIndiceVertice(String vertice) {
