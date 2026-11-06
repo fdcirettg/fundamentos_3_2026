@@ -110,14 +110,74 @@ class GrafoArrays {
             matrizAdyacencia[indice2][indice1] = peso; // Para grafos no dirigidos
         }
     }
+    public void DFS(String verticeInicial, String VerticeFinal){
+        boolean[] visitado = new boolean[numVertices];
+        int indiceInicial = obtenerIndiceVertice(verticeInicial);
+        int indiceFinal = obtenerIndiceVertice(VerticeFinal);
+        if (indiceInicial == -1 || indiceFinal == -1) {
+            System.out.println("Uno o ambos vértices no existen en el grafo.");
+            return;
+        }
+        System.out.println("Recorrido DFS desde " + verticeInicial + " hasta " + VerticeFinal + ":");
+        java.util.Stack<Integer> stack = new java.util.Stack<>();
+        stack.push(indiceInicial);
+        while (!stack.isEmpty()) {
+            int indiceActual = stack.pop();
+            if (!visitado[indiceActual]) {
+                visitado[indiceActual] = true;
+                System.out.print(vertices[indiceActual] + " ");
+                if (indiceActual == indiceFinal) {
+                    System.out.println("\nSe ha alcanzado el vértice final.");
+                    return; 
+                }
+            }
+            // Agregar vecinos no visitados al stack
+            for (int i = 0; i < numVertices; i++) {
+                if (matrizAdyacencia[indiceActual][i] != 0 && !visitado[i]) {
+                    stack.push(i);
+                }
+            }
+        }
+    }
+    public void BFS(String verticeInicial, String VerticeFinal){
+        // Implementación del recorrido Breadth-First Search (BFS)
+        boolean[] visitado = new boolean[numVertices];
+        int indiceInicial = obtenerIndiceVertice(verticeInicial);
+        int indiceFinal = obtenerIndiceVertice(VerticeFinal);
+        if (indiceInicial == -1 || indiceFinal == -1) {
+            System.out.println("Uno o ambos vértices no existen en el grafo.");
+            return;
+        }
+        System.out.println("Recorrido BFS desde " + verticeInicial + " hasta " + VerticeFinal + ":");
+        java.util.Queue<Integer> queue = new java.util.LinkedList<>();
+        queue.add(indiceInicial); // Agregar el vértice inicial a la cola
+        while (!queue.isEmpty()) {
+            int indiceActual = queue.poll();
+            if (!visitado[indiceActual]) {
+                visitado[indiceActual] = true;
+                System.out.print(vertices[indiceActual] + " ");
+                if (indiceActual == indiceFinal) {
+                    System.out.println("\nSe ha alcanzado el vértice final.");
+                    return; 
+                }
+            }
+            // Agregar vecinos no visitados a la cola
+            for (int i = 0; i < numVertices; i++) {
+                if (matrizAdyacencia[indiceActual][i] != 0 && !visitado[i]) {
+                    queue.add(i);
+                }
+            }
+        }
+    }
 }
-
 public class grafos {
     public static void main(String[] args) {
-        String texto = cargaArchivo("/Users/federicocirettgalan/Documents/proyectos_vscode/fundamentos_computacion3/fd_3/fundamentos_3_2026/grafos/grafo_salon.txt");
+        String texto = cargaArchivo("/Users/federicocirettgalan/Documents/proyectos_vscode/fundamentos_computacion3/fd_3/fundamentos_3_2026/grafos/grafo_salon2.txt");
         System.out.println("Contenido del archivo:\n" + texto);
         GrafoArrays grafo = new GrafoArrays(texto);
         grafo.display();
+        grafo.DFS("Carol", "Diego");
+        grafo.BFS("Carol", "Diego");
     }
     public static String cargaArchivo(String ruta) {
         String contenido = "";
