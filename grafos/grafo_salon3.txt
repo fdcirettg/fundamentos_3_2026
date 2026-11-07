@@ -1,0 +1,122 @@
+graph G_completo_ponderado {
+    // Definición de nodos
+    Angel; JoseLuis; Dylan; Jorge; Arcangel; Luna; Carol;
+    Andres; Adriel; Lucia; Sergio; Uriel; Valeria; Yael;
+
+    // Conexiones de Angel
+    Angel -- JoseLuis [label="3"];
+    Angel -- Dylan [label="1"];
+    Angel -- Jorge [label="5"];
+    Angel -- Arcangel [label="2"];
+    Angel -- Luna [label="4"];
+    Angel -- Carol [label="2"];
+    Angel -- Andres [label="5"];
+    Angel -- Adriel [label="1"];
+    Angel -- Lucia [label="3"];
+    Angel -- Sergio [label="4"];
+    Angel -- Uriel [label="2"];
+    Angel -- Valeria [label="5"];
+    Angel -- Yael [label="1"];
+
+    // Conexiones de JoseLuis
+    JoseLuis -- Dylan [label="4"];
+    JoseLuis -- Jorge [label="2"];
+    JoseLuis -- Arcangel [label="5"];
+    JoseLuis -- Luna [label="1"];
+    JoseLuis -- Carol [label="3"];
+    JoseLuis -- Andres [label="4"];
+    JoseLuis -- Adriel [label="2"];
+    JoseLuis -- Lucia [label="5"];
+    JoseLuis -- Sergio [label="1"];
+    JoseLuis -- Uriel [label="3"];
+    JoseLuis -- Valeria [label="4"];
+    JoseLuis -- Yael [label="2"];
+
+    // Conexiones de Dylan
+    Dylan -- Jorge [label="1"];
+    Dylan -- Arcangel [label="3"];
+    Dylan -- Luna [label="5"];
+    Dylan -- Carol [label="2"];
+    Dylan -- Andres [label="4"];
+    Dylan -- Adriel [label="5"];
+    Dylan -- Lucia [label="1"];
+    Dylan -- Sergio [label="3"];
+    Dylan -- Uriel [label="4"];
+    Dylan -- Valeria [label="2"];
+    Dylan -- Yael [label="5"];
+
+    // Conexiones de Jorge
+    Jorge -- Arcangel [label="4"];
+    Jorge -- Luna [label="2"];
+    Jorge -- Carol [label="1"];
+    Jorge -- Andres [label="3"];
+    Jorge -- Adriel [label="5"];
+    Jorge -- Lucia [label="2"];
+    Jorge -- Sergio [label="4"];
+    Jorge -- Uriel [label="1"];
+    Jorge -- Valeria [label="3"];
+    Jorge -- Yael [label="5"];
+
+    // Conexiones de Arcangel
+    Arcangel -- Luna [label="3"];
+    Arcangel -- Carol [label="5"];
+    Arcangel -- Andres [label="1"];
+    Arcangel -- Adriel [label="4"];
+    Arcangel -- Lucia [label="2"];
+    Arcangel -- Sergio [label="5"];
+    Arcangel -- Uriel [label="3"];
+    Arcangel -- Valeria [label="1"];
+    Arcangel -- Yael [label="4"];
+
+    // Conexiones de Luna
+    Luna -- Carol [label="4"];
+    Luna -- Andres [label="2"];
+    Luna -- Adriel [label="1"];
+    Luna -- Lucia [label="5"];
+    Luna -- Sergio [label="3"];
+    Luna -- Uriel [label="5"];
+    Luna -- Valeria [label="2"];
+    Luna -- Yael [label="1"];
+
+    // Conexiones de Carol
+    Carol -- Andres [label="3"];
+    Carol -- Adriel [label="2"];
+    Carol -- Lucia [label="4"];
+    Carol -- Sergio [label="1"];
+    Carol -- Uriel [label="5"];
+    Carol -- Valeria [label="3"];
+    Carol -- Yael [label="2"];
+
+    // Conexiones de Andres
+    Andres -- Adriel [label="4"];
+    Andres -- Lucia [label="1"];
+    Andres -- Sergio [label="5"];
+    Andres -- Uriel [label="2"];
+    Andres -- Valeria [label="4"];
+    Andres -- Yael [label="3"];
+
+    // Conexiones de Adriel
+    Adriel -- Lucia [label="3"];
+    Adriel -- Sergio [label="2"];
+    Adriel -- Uriel [label="1"];
+    Adriel -- Valeria [label="5"];
+    Adriel -- Yael [label="4"];
+
+    // Conexiones de Lucia
+    Lucia -- Sergio [label="4"];
+    Lucia -- Uriel [label="2"];
+    Lucia -- Valeria [label="1"];
+    Lucia -- Yael [label="5"];
+
+    // Conexiones de Sergio
+    Sergio -- Uriel [label="3"];
+    Sergio -- Valeria [label="2"];
+    Sergio -- Yael [label="4"];
+
+    // Conexiones de Uriel
+    Uriel -- Valeria [label="1"];
+    Uriel -- Yael [label="3"];
+
+    // Conexión final
+    Valeria -- Yael [label="2"];
+}
