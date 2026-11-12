@@ -5,7 +5,7 @@ public class GrafoListas {
     ArrayList<Nodos> nodos;
     public GrafoListas(String texto) {
         creaListaVertices(texto);
-       // agregaAristas(texto);
+       agregaAristas(texto);
     }
     private void creaListaVertices(String texto) {
         String[] lineas = texto.split("\\R");
@@ -49,9 +49,10 @@ public class GrafoListas {
             int etiqueta = arista.indexOf('[');
             int peso = 0;
             if (etiqueta >= 0) {
-                String pesoStr = arista.substring(etiqueta + 1, arista.indexOf(']', etiqueta)).trim();
+                String pesoStr = arista.substring(etiqueta + 7, arista.indexOf(']', etiqueta));
+                pesoStr = pesoStr.replace("\"", "").trim();
                 try {
-                    peso = Integer.parseInt(pesoStr);
+                    peso = Integer.parseInt(pesoStr.trim());
                 } catch (NumberFormatException e) {
                     System.out.println("Error al convertir el peso a entero: " + pesoStr);
                 }
