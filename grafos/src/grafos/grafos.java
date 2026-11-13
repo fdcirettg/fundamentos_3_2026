@@ -12,6 +12,7 @@ public class grafos {
         System.out.println("GrafoListas");
         GrafoListas grafoListas = new GrafoListas(texto);
         grafoListas.display();
+        grafoListas.DFS("Arcangel", "Sergio");
     }
     public static String cargaArchivo(String ruta) {
         String contenido = "";

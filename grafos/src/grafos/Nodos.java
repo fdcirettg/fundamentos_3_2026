@@ -4,10 +4,18 @@ public class Nodos {
     String nombre;
     ArrayList<Nodos> adyacentes;
     int peso;
+    boolean visitado;
     public Nodos(String nombre) {
         this.nombre = nombre;
         this.peso = 0;
+        this.visitado = false;
         this.adyacentes = new ArrayList<>();
+    }
+    public void setVisitado(boolean visitado) {
+        this.visitado = visitado;
+    }
+    public boolean isVisitado() {
+        return visitado;
     }
     public void agregarAdyacente(Nodos nodo, int peso) {
         adyacentes.add(nodo);

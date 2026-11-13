@@ -77,6 +77,47 @@ public class GrafoListas {
             }
         }
     }
+
+    private Nodos obtenerNodoPorNombre(String nombre) {
+        for (Nodos nodo : nodos) {
+            if (nodo.getNombre().equals(nombre)) {
+                return nodo;
+            }
+        }
+        return null; // Retorna null si no se encuentra el nodo
+    } 
+    public void DFS(String verticeInicial, String VerticeFinal){
+        int numVertices = nodos.size();
+        boolean[] visitado = new boolean[numVertices];
+        Nodos nodoInicial = obtenerNodoPorNombre(verticeInicial);
+        Nodos nodoFinal = obtenerNodoPorNombre(VerticeFinal);
+
+        if (nodoInicial == null || nodoFinal == null) {
+            System.out.println("Uno o ambos vértices no existen en el grafo.");
+            return;
+        }
+        System.out.println("Recorrido DFS desde " + verticeInicial + " hasta " + VerticeFinal + ":");
+        java.util.Stack<Nodos> stack = new java.util.Stack<>();
+        stack.push(nodoInicial);
+        while (!stack.isEmpty()) {
+            Nodos nodoActual = stack.pop();
+            if (!nodoActual.isVisitado()) {
+                nodoActual.setVisitado(true);
+                System.out.print(nodoActual.getNombre() + " ");
+                if (nodoActual.getNombre().equals(nodoFinal.getNombre())) {
+                    System.out.println("\nSe ha alcanzado el vértice final.");
+                    return; 
+                }
+            }
+            // Agregar vecinos no visitados al stack
+            for (Nodos vecino : nodoActual.getAdyacentes()) {
+                if (!vecino.isVisitado()) {
+                    stack.push(vecino);
+                }
+            }
+        }
+    }
+
 }
     
 
